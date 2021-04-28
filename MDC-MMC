@@ -1,0 +1,11 @@
+#include <iostream>
+
+int main() {
+  std::cout << "Hello World!\n";
+}
+
+/************** mdc de a e b **********************/
+int mdc(int a, int b){
+  return (b == 0 ? a : mdc(b, a%b)); //b == 0 ? Caso sim, retorne a, caso não, retorne mdc(b, a%b)
+}
+// *************** IMPORTANTE: para mmc = a*b/mdc(a,b)
