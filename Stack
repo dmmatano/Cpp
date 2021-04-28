@@ -1,0 +1,92 @@
+#include <iostream>
+
+using namespace std;
+
+struct Pilha{
+  int topo=-1;
+  int elemento[20];
+};
+
+int isEmpty(Pilha &pilha){
+  if(pilha.topo < 0){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+int isFull(Pilha &pilha){
+  if(pilha.topo>=20){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+int push(Pilha &pilha,int elementoNovo){
+  pilha.topo++;
+  if(isFull(pilha)==1){
+    pilha.topo--;
+    cout<<endl;
+    cout<<"Ops, a pilha esta completamente cheia"<<endl;
+    return 1;
+  }else{
+    pilha.elemento[pilha.topo]=elementoNovo;
+    return 0;
+  }
+}
+
+int pop(Pilha &pilha){
+  if(isEmpty(pilha)==1){
+    cout<<endl;
+    cout<<"Ops, a pilha esta completamente vazia"<<endl;
+    return -1000;
+  }else{
+    int topoRetirado=pilha.elemento[pilha.topo];
+    pilha.elemento[pilha.topo]=0;
+    pilha.topo--;
+    return topoRetirado;
+  }
+}
+
+void show(Pilha &pilha){
+  for(int i=pilha.topo;i>=0;i--){
+    cout<<pilha.elemento[i]<<endl;
+  }
+}
+
+int main() {
+  string entradaStr;
+  int entrada;
+  Pilha pilha1;
+  Pilha pilha2;
+  cout << "Entradas: \n";  
+  do{
+    getline(cin,entradaStr);
+    if(entradaStr==""){
+      break;
+    }
+    entrada=stoi(entradaStr);
+    if(entrada>0){
+      push(pilha1,entrada);
+    }else if(entrada<0){
+      push(pilha2,entrada);
+    }else if(entrada==0){
+      pop(pilha1);
+      pop(pilha2);
+    }else{
+      cout<<endl;
+      cout<<"Entrada invalida... digite apenas inteiros !"<<endl;
+    }
+  }while (1);
+  cout<<"Pilha"<<endl;
+  cout<<"topo"<<endl;
+  show(pilha1);
+  cout<<"base"<<endl;
+  cout<<endl;
+  cout<<"Pilha"<<endl;
+  cout<<"topo"<<endl;
+  show(pilha2);
+  cout<<"base"<<endl;
+  cout<<endl;
+}
