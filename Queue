@@ -1,0 +1,97 @@
+#include <iostream>
+using namespace std;
+
+struct Fila{
+  int rear=-1;
+  int elemento[5];
+};
+
+int isFull(Fila &fila){
+  if(fila.rear>=5){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+int isEmpty(Fila &fila){
+  if(fila.rear < 0){
+    return 1;
+  }else{
+    return 0;
+  }
+}
+
+int enqueue(Fila &fila,int elementoNovo){
+  fila.rear++;
+  if(isFull(fila)==1){
+    fila.rear--;
+    cout<<endl;
+    cout<<"Ops, a fila esta completamente cheia"<<endl;
+    return 0;
+  }else{
+    fila.elemento[fila.rear]=elementoNovo;
+    return 1;
+  }
+}
+
+int dequeue(Fila &fila){
+  if(isEmpty(fila)==1){
+    cout<<endl;
+    cout<<"Ops, a fila esta completamente vazia"<<endl;
+    return -1000;
+  }else{
+    int elementoRetirado=fila.elemento[0];
+    for(int i=0;i<fila.rear;i++){
+      fila.elemento[i]=fila.elemento[i+1];
+    }
+    fila.elemento[fila.rear]=0;
+    fila.rear--;
+    return elementoRetirado;
+  }
+}
+
+void show(Fila &fila){
+  for(int i=fila.rear;i>=0;i--){
+    cout<<fila.elemento[i]<<" ";
+  }
+}
+
+
+
+int main() {
+  string entrada="";
+  int entradaInt;
+  Fila fila;
+  while(entrada!="sair"){
+    cout<<"-------------- Menu --------------"<<endl;
+    cout<<"Escolha uma das opções (escreva):"<<endl;
+    cout<<"enqueue para enfileirar um valor"<<endl;
+    cout<<"dequeue para desenfileirar um valor"<<endl;
+    cout<<"show para exibir a Fila"<<endl;
+    cout<<"sair para encerrar o programa"<<endl;
+    cout<<"----------------------------------"<<endl;
+    cin>>entrada;
+    if(entrada=="enqueue"){
+      cout<<"Digite o número inteiro:"<<endl;
+      cin>>entradaInt;
+      enqueue(fila,entradaInt);
+      continue;
+    }else if(entrada=="dequeue"){
+      int numRetirado = dequeue(fila);
+      cout<<"Número retirado:"<<endl;
+      cout<<numRetirado<<endl;
+      continue;
+    }else if(entrada=="show"){
+      cout<<"Fila"<<endl;
+      cout<<"rear: ";
+      show(fila);
+      cout<<":front"<<endl;
+      cout<<endl;
+      continue;
+    }else if(entrada=="sair"){
+      break;
+    }else continue;
+  }
+
+}
