@@ -1,0 +1,24 @@
+#include <iostream>
+#include <stdlib.h>
+using namespace std;
+
+int main() {
+    int q;
+    cin>>q;
+    //malloc devolve end de memoria que reservou
+    //seu param indica qtd de bytes a ser reservados
+    int *arr=(int*)malloc(sizeof(int)*q);
+    
+    for(int i=0;i<q;i++){
+        cin>>arr[i];
+    }
+    for(int i=0;i<q-1;i++){
+        
+        if(*arr<*(arr+i+1)){
+          *arr=*(arr+i+1);
+        }
+    }
+    cout<<*arr;
+    free(arr);//libera memoria
+    return 0;
+}
