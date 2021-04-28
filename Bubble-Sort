@@ -1,0 +1,39 @@
+/*********************************************/
+/**           BUBBLE SORT STUDY             **/
+/*********************************************/
+#include <iostream>
+#include <unistd.h>
+#include <time.h>
+using namespace std;
+void bubble_sort(int vet[], int n);
+int main(){
+    int n=1000, vet[n];
+    srand(10000);
+    for(int i=0;i<1000;i++){
+      vet[i]=rand()%10000;
+    }
+    bubble_sort(vet,n);
+    cout<<"vetor ordenado:"<<endl;
+    for(int i=0;i<1000;i++){
+        cout<<vet[i]<<endl ;
+    }
+}
+
+
+/*****************************************/
+/**   Function: Bubble Sort Optimized   **/
+/**   Ordena vetor desconsiderando os   **/
+/**   ultimos valores.                  **/
+/*****************************************/
+void bubble_sort(int vet[],int n){
+    int aux;
+    for(int j=1;j<n;j++){
+        for(int i=0;i<n-j;i++){
+            if(vet[i]>vet[i+1]){
+                aux=vet[i];
+                vet[i]=vet[i+1];
+                vet[i+1]=aux;
+            }
+        }
+    }
+}
