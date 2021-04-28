@@ -1,0 +1,52 @@
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+// verifica se o bit i do num x está "setado"
+// faz um and de x com 1 rotacionado a esquerda i vezes
+// se resultar != 0 então está ligado
+bool is_set(int x, int i){
+  bool ret = ((x&(1 << i)) != 0);
+  return ret;
+}
+
+// extrai o bit menos significativo de x
+//faz and com o numero e seu negativo(complemento de 1)
+// o resultado é o lsb
+int lsb(int x){
+  return x&-x;
+}
+
+//conta quantos bits 1 existem no num
+//forma mais rápida é subtrair o lsb até zerar o num e 
+//incrementar um contador ret
+int count_bits(int x){
+  int ret = 0;
+  while(x != 0){
+    ++ret;
+    x -= x&-x;
+  }
+  return ret;
+}
+
+//verifica se x é potencia de 2
+//ao fazer and com x-1, se resultar em 0 é potencia de 2
+bool is_power_of_two(int x){
+  if(x == 0)  return 0;
+  return ((x&(x - 1)) == 0);
+}
+
+//para ligar um bit em um num x só fazer or com o bit que
+// deseja setar
+/*
+int x, i;
+cin >> x >> i;
+x |= (1 << i);
+Se desejar desligar, primeiro tem que ver se o bit esta ligado
+e depois:
+x ^= (1 << i); //Depois desligo o bit
+*/
+
+int main() {
+  
+}
