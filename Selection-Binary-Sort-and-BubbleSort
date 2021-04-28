@@ -1,0 +1,80 @@
+#include <iostream>
+#include <unistd.h>
+#include <time.h>
+
+using namespace std;
+
+/*************** Protótipos ************************/
+void bubble_sort(int vet[],int n);
+int sequentialSearch(int vet[],int tam, int buscado);
+int binarySearch(int vet[],int tam, int buscado);
+/**************************************************/
+
+int main() {
+
+  int buscado, n=1000, vet[n];
+  srand(seed);
+  for(int i=0;i<1000;i++){
+    vet[i]=rand()%10000;
+  }
+  cout<<"Digite o número buscado:"<<endl;
+  cin>>buscado;
+  
+  bubble_sort(vet,n);
+  int x=sequentialSearch(vet,n, buscado);
+  cout<<"índice encontrado na busca sequencial: "<<x<<endl;
+  x=binarySearch(vet, n, buscado);
+  cout<<"índice encontrado na busca binária: "<<x<<endl;
+}
+
+/*************** bubble sort ************************/
+void bubble_sort(int vet[],int n){
+    int aux;
+    int iteracoes=0;
+    for(int j=1;j<n;j++){
+        for(int i=0;i<n-j;i++){
+            iteracoes++;
+            if(vet[i]>vet[i+1]){
+                aux=vet[i];
+                vet[i]=vet[i+1];
+                vet[i+1]=aux;
+            }
+        }
+    }
+}
+
+/*************** sequential search ************************/
+int sequentialSearch(int vet[],int tam, int buscado){
+  int iteracoes=0;
+  for(int i=0;i<tam;i++){
+    iteracoes++;
+    if(vet[i]==buscado){
+      cout<<"Iterações na Busca Sequencial: "<<iteracoes<<endl;
+      return i;
+    }
+  }
+  cout<<"Iterações na Busca Sequencial:  "<<iteracoes<<endl;
+  return -1;
+}
+
+/*************** bin search ************************/
+// apenas vetores ordenados !
+int binarySearch(int vet[],int tam, int buscado){
+  int high=tam-1, low=0, mid, iteracoes=0;
+  while(low<=high){
+    mid=(high + low)/2;
+    if(vet[mid]>buscado){
+      high=mid-1;
+      iteracoes++;
+    }else if(vet[mid]<buscado){
+      low=mid+1;
+      iteracoes++;
+    }else{
+      iteracoes++;
+      cout<<"Iterações na Busca Binária: "<<iteracoes<<endl;
+      return mid;
+    }
+  }
+  cout<<"Iterações na Busca Binária: "<<iteracoes<<endl;
+  return -1;
+}
