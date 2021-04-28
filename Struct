@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+struct Pessoa{
+  string nome;
+  string sobrenome;
+  unsigned int idade;
+  string cpf;
+};
+Pessoa criarPessoa();
+
+int main(){
+  
+  Pessoa vet[5];
+  for(int i=0;i<3;i++){
+    vet[i]=criarPessoa();
+  }
+  for(int i=0;i<3;i++){
+    cout<<"Nome: "<<vet[i].nome<<endl;
+    cout<<"Sobrenome: "<<vet[i].sobrenome<<endl;
+    cout<<"Idade: "<<vet[i].idade<<endl;
+    cout<<"CPF: "<<vet[i].cpf<<endl;
+  }
+}
+
+Pessoa criarPessoa(){
+  Pessoa p;
+  cin>>p.nome;
+  cin>>p.sobrenome;
+  cin>>p.cpf;
+  cin>>p.idade;
+  return p;
+}
