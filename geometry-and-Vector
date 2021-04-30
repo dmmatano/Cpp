@@ -1,0 +1,93 @@
+#include <bits/stdc++.h>
+#define x first
+#define y second
+
+using namespace std;
+
+typedef pair <double, double> point;
+
+// criacao de pontos - metodo pair
+point sum(point a, point b){
+  point ret;
+  ret.x = a.x + b.x;
+  ret.y = a.y + b.y;
+  return ret;
+}
+point neg(point a){
+  point ret;
+  ret.x = -a.x;
+  ret.y = -a.y;
+  return ret;
+}
+
+//criacao de ptos - metodo complexos
+/*
+real§: Retorna a parte real do número complexo p.
+imag§: Retorna a parte imaginária do número complexo.
+abs§: Retorna o comprimento do vetor (o valor absoluto de p)
+sin§, cos§, tan§: São as funções trigonométricas no nosso número complexo.
+arg§: Diz o ângulo que o vetor faz com a horizontal.
+conj§: Retorna o conjugado do número complexo
+*/
+#define xi real()
+#define yi imag()
+typedef complex <double> ponto;
+
+//Produto escalar
+double dot(point a, point b){
+  return a.x*b.x + a.y*b.y;
+}
+//por complexos
+/*
+double dot(point a, point b){
+  return  (a*conj(b)).x;
+}
+*/
+
+//Produto Vetorial
+double cross(point a, point b){
+  return a.x*b.y - a.y*b.x;
+}
+//complexdouble cross(point a, point b){
+  /*
+double cross(point a, point b){
+  return (a*conj(b)).y;
+}*/
+
+//Distância entre 2 ptos (módulo da diferenca)
+/*double dist(point a, point b){
+  point c = a - b;
+  return sqrt(c.x*c.x + c.y*c.y);
+}*/
+//para complexosdouble dist(point a, point b){
+/*double dist(point a, point b){
+  return abs(a - b);
+}*/
+
+//Dist pto e Retorna
+/*
+double dist(point a, line b){
+  double crs = cross(point(a - b.first), point(b.second - b.first));
+  return abs(crs/dist(b.first, b.second));
+}
+*/
+
+//area do poligono
+/*
+double area(vector <point> p){
+  double ret = 0;
+  for(int i = 2; i < p.size(); ++i){
+    ret += cross(p[i] - p[0], p[i - 1] - p[0])/2;
+  }
+  return abs(ret);
+}
+*/
+
+//verifica se retorna angulo convexo ou concavo
+/*
+double ccw(point a, point b, point c){
+  double ret = cross(b - a, c - b);
+  return ret < 0;
+}
+
+*/
